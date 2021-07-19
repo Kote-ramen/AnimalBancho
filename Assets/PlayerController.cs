@@ -1,12 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public float speed = 0.5f; //移動速度
-    public int level; //レベル（肉の枚数）
-    public List<int> colors = new List<int>(10); //肉の色のリスト
+    //private int level = 1; //レベル（肉の枚数）
+    public GameObject poop;
+
+    private Color poopcolor;
+    private float playerx;
+    private float playerz;
+    private bool poopkey = false;
+
+    /* 古い肉（リストの先頭）から順に捨てていくため先入れ先出しのキューを用いる */
+    public Queue<Color> colors = new Queue<Color>(10); //肉の色のキュー
 
     Dictionary<string, bool> move = new Dictionary<string, bool>
     {
@@ -19,7 +28,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.level = 1;
+        
     }
 
     // Update is called once per frame
@@ -29,6 +38,21 @@ public class PlayerController : MonoBehaviour
         move["down"] = Input.GetKey(KeyCode.DownArrow);
         move["right"] = Input.GetKey(KeyCode.RightArrow);
         move["left"] = Input.GetKey(KeyCode.LeftArrow);
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            poopkey = true;
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            this.tag = "Attack";
+        }
+        if(Input.GetKeyUp(KeyCode.A))
+        {
+            this.tag = "Player";
+        }
+
+        playerx = transform.position.x;
+        playerz = transform.position.z;
     }
 
     private void FixedUpdate()
@@ -50,15 +74,36 @@ public class PlayerController : MonoBehaviour
             transform.Translate(-speed, 0f, 0f);
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        if (poopkey)
         {
             Defication();
         }
     }
 
+
+    /* colorsの先頭を捨ててオブジェクトの色を（暫定的に）白にする */
     private void Defication()
     {
-        print("I've deficated");
-        GetComponent<MeshRenderer>().material.color = Color.white;
+        poopkey = false;
+        if (colors.Count() > 1){
+            colors.Dequeue();
+            Instantiate(poop, new Vector3(playerx, 2f, playerz), Quaternion.identity);
+            GetComponent<MeshRenderer>().material.color = colors.Peek();
+        }
+        else if(colors.Count() == 1)
+        {
+            colors.Dequeue();
+            Instantiate(poop, new Vector3(playerx, 2f, playerz), Quaternion.identity);
+            GetComponent<MeshRenderer>().material.color = Color.gray;
+        }
+        else
+        {
+            GetComponent<MeshRenderer>().material.color = Color.white;
+        }
+
+
+        Debug.Log(colors.Count());
+        Debug.Log("フンをした！");
+        return;
     }
 }
