@@ -1,14 +1,23 @@
 ﻿<Properties StartupConfiguration="{2C2836A9-0588-165B-DAD7-8E2553498933}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/PlayerController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/EnemyController.cs">
     <Files>
-      <File FileName="Assets/PlayerController.cs" Line="61" Column="33" />
-      <File FileName="Assets/CameraController.cs" />
-      <File FileName="Assets/EnemyColor.cs" />
+      <File FileName="Assets/PlayerController.cs" Line="81" Column="30" />
+      <File FileName="Assets/CameraController.cs" Line="16" Column="27" />
+      <File FileName="Assets/EnemyColor.cs" Line="24" Column="1" />
+      <File FileName="Assets/EnemyStatus.cs" Line="63" Column="24" />
+      <File FileName="Assets/EnemyController.cs" Line="7" Column="1" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Animal Bancho" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="d451cd97-d0c6-4dfe-84d4-f92330ad9c71" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="c28fea97-1a9b-47e9-b133-3b8144324837" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

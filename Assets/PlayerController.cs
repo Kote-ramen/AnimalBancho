@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 0.5f; //移動速度
     //private int level = 1; //レベル（肉の枚数）
     public GameObject poop;
+
     private Color poopcolor;
     private float playerx;
     private float playerz;
@@ -40,6 +41,14 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             poopkey = true;
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            this.tag = "Attack";
+        }
+        if(Input.GetKeyUp(KeyCode.A))
+        {
+            this.tag = "Player";
         }
 
         playerx = transform.position.x;
@@ -93,8 +102,8 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        print(colors.Count());
-        print("I've deficated");
+        Debug.Log(colors.Count());
+        Debug.Log("フンをした！");
         return;
     }
 }
